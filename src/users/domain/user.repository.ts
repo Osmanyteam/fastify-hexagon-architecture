@@ -1,5 +1,5 @@
-import "reflect-metadata";
-import type UserEntity from "../entity/user.entity";
+import 'reflect-metadata';
+import type UserEntity from '../entity/user.entity';
 
 interface User {
     userExists(email: string): Promise<boolean>;

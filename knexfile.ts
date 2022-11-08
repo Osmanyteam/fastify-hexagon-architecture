@@ -1,11 +1,11 @@
-import type { Knex } from "knex";
-import env from "./src/shared/env";
+import type { Knex } from 'knex';
+import env from './src/shared/env';
 
 // Update with your config settings.
 
 const config: { [key: string]: Knex.Config } = {
   development: {
-    client: "mysql",
+    client: 'mysql',
     connection: {
       host: env.mysql.host,
       port: env.mysql.port,
@@ -16,7 +16,7 @@ const config: { [key: string]: Knex.Config } = {
   },
 
   staging: {
-    client: "mysql",
+    client: 'mysql',
     connection: {
       host: env.mysql.host,
       port: env.mysql.port,
@@ -27,7 +27,7 @@ const config: { [key: string]: Knex.Config } = {
   },
 
   production: {
-    client: "mysql",
+    client: 'mysql',
     connection: {
       host: env.mysql.host,
       port: env.mysql.port,

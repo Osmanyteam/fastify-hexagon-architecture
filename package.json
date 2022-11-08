@@ -9,7 +9,9 @@
     "start": "node build/index.js",
     "dev": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec 'ts-node src/index.ts'",
     "create:migration": "knex migrate:make",
-    "migrate": "knex migrate:latest"
+    "migrate": "knex migrate:latest",
+    "lint": "eslint src/**/*.ts",
+    "format": "eslint src/**/*.ts --fix"
   },
   "author": "osmany jiron",
   "license": "MIT",
@@ -33,6 +35,10 @@
     "@types/bcrypt": "^5.0.0",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
+    "prettier": "^2.7.1",
     "ts-node": "^10.9.1"
   }
 }

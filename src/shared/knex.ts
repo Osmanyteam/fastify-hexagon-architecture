@@ -1,5 +1,5 @@
-import Knex from "knex";
-import env from "./env";
+import Knex from 'knex';
+import env from './env';
 
 const knex = Knex({
     client: 'mysql',

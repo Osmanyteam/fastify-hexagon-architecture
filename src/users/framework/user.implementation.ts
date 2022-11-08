@@ -1,9 +1,9 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import env from "../../shared/env";
-import type UserRepository from "../domain/user.repository";
-import type userEntity from "../entity/user.entity";
-import UserDB from "./user.db";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import env from '../../shared/env';
+import type UserRepository from '../domain/user.repository';
+import type userEntity from '../entity/user.entity';
+import UserDB from './user.db';
 
 export default class UserImplementation implements UserRepository {
   private userDB = UserDB;
@@ -26,11 +26,11 @@ export default class UserImplementation implements UserRepository {
       email,
     });
     if (!user) {
-      throw new Error("User not found");
+      throw new Error('User not found');
     }
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
-      throw new Error("Wrong credentials");
+      throw new Error('Wrong credentials');
     }
     return {
       accessToken: jwt.sign(

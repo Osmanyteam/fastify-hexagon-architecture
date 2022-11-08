@@ -2,15 +2,15 @@ import type {
   FastifyReply,
   FastifyRequest,
   RouteShorthandOptions,
-} from "fastify";
-// import httpStatus from "http-status";
-import { Type, Static } from "@sinclair/typebox";
-import UserApplication from "../application/user.application";
-import UserImplementation from "./user.implementation";
+} from 'fastify';
+// import httpStatus from 'http-status';
+import { Type, Static } from '@sinclair/typebox';
+import UserApplication from '../application/user.application';
+import UserImplementation from './user.implementation';
 const userApplication = new UserApplication(new UserImplementation());
 
 const bodyLogin = Type.Object({
-  email: Type.String({ format: "email" }),
+  email: Type.String({ format: 'email' }),
   password: Type.String(),
 });
 const LoginResponse = Type.Object({
@@ -37,13 +37,13 @@ const login = async function (
   const tokens = await userApplication.login(email, password);
   console.log(tokens);
   reply.send({
-    status: "success",
+    status: 'success',
     data: tokens,
   });
 };
 
 const bodyCreateAccount = Type.Object({
-  email: Type.String({ format: "email" }),
+  email: Type.String({ format: 'email' }),
   password: Type.String(),
   username: Type.String(),
 });
@@ -52,13 +52,13 @@ const createAccountOpts: RouteShorthandOptions = {
     body: bodyLogin,
     response: {
       200: {
-        type: "object",
+        type: 'object',
         properties: {
           status: {
-            type: "string",
+            type: 'string',
           },
           data: {
-            type: "object",
+            type: 'object',
           },
         },
       },
@@ -76,7 +76,7 @@ const createAccount = async function (
     password,
   });
   reply.send({
-    status: "success",
+    status: 'success',
   });
 };
 

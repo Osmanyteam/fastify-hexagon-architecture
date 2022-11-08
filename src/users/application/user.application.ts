@@ -1,5 +1,5 @@
-import type UserRepository from "../domain/user.repository";
-import type UserEntity from "../entity/user.entity";
+import type UserRepository from '../domain/user.repository';
+import type UserEntity from '../entity/user.entity';
 
 export default class UserApplication {
 

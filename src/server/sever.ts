@@ -1,5 +1,5 @@
-import fastify, { FastifyInstance } from "fastify";
-import userRoutes from "../users/framework/user.router";
+import fastify, { FastifyInstance } from 'fastify';
+import userRoutes from '../users/framework/user.router';
 
 export default class Server {
   private server: FastifyInstance;
@@ -22,15 +22,15 @@ export default class Server {
   }
 
   private async setRouter() {
-    const options = { prefix: "/v1", logLevel: "debug" };
+    const options = { prefix: '/v1', logLevel: 'debug' };
     await this.server.register(userRoutes, options);
   }
 
   // private async generateOpenAPI() {
   //   const pluginOpts: OAS3PluginOptions = {
   //     openapiInfo: {
-  //       title: "Test Document",
-  //       version: "0.1.0",
+  //       title: 'Test Document',
+  //       version: '0.1.0',
   //     },
   //     publish: {
   //       ui: 'rapidoc',
