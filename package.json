@@ -11,7 +11,8 @@
     "create:migration": "knex migrate:make",
     "migrate": "knex migrate:latest",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint src/**/*.ts --fix",
+    "prepare": "husky install"
   },
   "author": "osmany jiron",
   "license": "MIT",
@@ -38,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "eslint": "^8.27.0",
+    "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "ts-node": "^10.9.1"
   }
