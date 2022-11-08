@@ -40,5 +40,5 @@ src\
  |--index.ts                            # App entry point
 ```
 
-### Why uses are in root `src`
+### Why uses cases are in root `src`
 The goal is have structure clean to see and recognize easily what uses case we have in our project putting the use cases at the top level being easy to understand where we should handle them.
