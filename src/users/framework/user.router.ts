@@ -13,5 +13,10 @@ export default (fastify: FastifyInstance, _: any, done: () => void) => {
     controller.createAccount.opts,
     controller.createAccount.handle
   );
+  fastify.patch<{ Body: Static<typeof controller.updateAccount.bodySchema> }>(
+    '/user',
+    controller.updateAccount.opts,
+    controller.updateAccount.handle,
+  )
   done();
 };

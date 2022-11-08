@@ -6,6 +6,7 @@ import type userEntity from '../entity/user.entity';
 import UserDB from './user.db';
 
 export default class UserImplementation implements UserRepository {
+  
   private userDB = UserDB;
 
   async userExists(email: string): Promise<boolean> {
@@ -48,5 +49,15 @@ export default class UserImplementation implements UserRepository {
         env.passphrase
       ),
     };
+  }
+
+  async updateUser(id: number, user: Omit<userEntity, 'id' | 'email' | 'password'>): Promise<userEntity> {
+    let userFound = await this.userDB.query().findById(id);
+    if (!userFound) {
+      throw new Error('User not found');
+    }
+    userFound = Object.assign(userFound, user);
+    await userFound.$query().update();
+    return userFound;
   }
 }

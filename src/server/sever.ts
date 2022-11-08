@@ -1,16 +1,20 @@
 import fastify, { FastifyInstance } from 'fastify';
+import env from '../shared/env';
+import jwt from 'jsonwebtoken';
 import userRoutes from '../users/framework/user.router';
+import UserDB from '../users/framework/user.db';
+import type RequestUser from '../shared/requestUser.type';
 
 export default class Server {
   private server: FastifyInstance;
 
   constructor() {
-    this.server = fastify({ logger: false });
+    this.server = fastify({ logger: true });
     this.setup();
   }
 
   private async setup() {
-    // await this.generateOpenAPI();
+    await this.jwtSetup();
     this.setRouter();
     this.server.listen({ port: 3002 }, async (err, address) => {
       if (err) {
@@ -26,18 +30,13 @@ export default class Server {
     await this.server.register(userRoutes, options);
   }
 
-  // private async generateOpenAPI() {
-  //   const pluginOpts: OAS3PluginOptions = {
-  //     openapiInfo: {
-  //       title: 'Test Document',
-  //       version: '0.1.0',
-  //     },
-  //     publish: {
-  //       ui: 'rapidoc',
-  //       json: true,
-  //       yaml: true,
-  //     },
-  //   };
-  //   await this.server.register(OAS3Plugin, { ...pluginOpts });
-  // }
+  private async jwtSetup() {
+    this.server.addHook('onRequest', async (request, _) => {
+      if (request.headers['authorization']) {
+        const jwtObject = jwt.verify(request.headers['authorization'].replace(/Bearer /, ''), env.passphrase) as { id: string };
+        const user = await UserDB.query().findById(jwtObject.id);
+        (request as RequestUser).user = user;
+      }
+    });
+  }
 }

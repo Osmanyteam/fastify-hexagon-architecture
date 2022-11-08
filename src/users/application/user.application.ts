@@ -16,4 +16,8 @@ export default class UserApplication {
     public login(email: string, password: string) {
         return this.userRepository.login(email, password);
     }
+
+    public async updateUser(id:number, user: Omit<UserEntity, 'id' | 'email' | 'password'>): Promise<UserEntity> {
+        return this.userRepository.updateUser(id, user);
+    }
 }
